@@ -187,9 +187,19 @@ function exchange() {
             return va = getArrayTotal[viTri2]
         }
         if (ind == viTri2) {
+            console.log(ind)
+
+            console.log(va)
+
+
             return va = getArrayTotal[viTri1]
+
         }
+        console.log(va)
         return va
+
+
+
     })
 
     var resultExchange = document.getElementById('resultExchange');
@@ -231,7 +241,7 @@ function finInteger() {
 
             for (var j = 2; j < i; j += 1) {
 
-                if (i % j === 0) {
+                if (i % j === 0 && i !== 2) {
                     snt = false;
                     break;
                 }
@@ -260,6 +270,49 @@ function finInteger() {
 
 }
 
+
+// function finInteger2() {
+//     var getArrayTotal = getNodeEle();
+
+//     var resultInter = -1;
+//     resultInter = getArrayTotal.find(function(vale) {
+
+//         // tập hợp các số nguyên tố của giá trị vào 1 Array
+
+//         for (var i = 2; i <= vale; i += 1) {
+//             var snt = true;
+//             var SNTArray = [];
+
+//             for (var j = 2; j < i; j += 1) {
+
+//                 if (i % j === 0) {
+//                     snt = false;
+//                     break;
+//                 }
+//             }
+//             if (snt) {
+//                 // Push số nguyên tố vào Array
+//                 SNTArray.push(i);
+
+//             }
+//         }
+
+
+//         // Nếu giá trị cuối cùng trong tập hợp các số nguyên mà
+//         // bằng bới giá trị của số nguyên đang xét đó thì số đó là số nguyên tố
+//         if (SNTArray[SNTArray.length - 1] == vale) {
+
+//             // Lưu số nguyên đó vào 1 mảng và thoát lệnh ngay;
+//             return vale;
+//         }
+
+//     })
+
+
+//     var resultIntegers = document.getElementById('resultIntegers');
+//     resultIntegers.innerHTML = `<p> Số nguyên tố là: ${resultInter}</p>`;
+
+// }
 
 
 
