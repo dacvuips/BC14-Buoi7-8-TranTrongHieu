@@ -154,12 +154,27 @@ function lastEven() {
 
 function exchange() {
     var getArrayTotal = getNodeEle();
-    var exchangeValue = getArrayTotal.reverse()
 
+    var viTri1 = document.getElementById('viTri1').value;
+    var viTri2 = document.getElementById('viTri2').value;
+    var viTriPhu = [];
+
+    for (var x = 0; x < getArrayTotal.length; x += 1) {
+
+        if (x == viTri1) {
+            viTriPhu.push(getArrayTotal[viTri2])
+        } else if (x == viTri2) {
+            viTriPhu.push(getArrayTotal[viTri1])
+        } else {
+            viTriPhu.push(getArrayTotal[x])
+        }
+    }
 
     var resultExchange = document.getElementById('resultExchange');
-    resultExchange.innerHTML = `<p> Đã đổi là: ${exchangeValue}</p>`
+    resultExchange.innerHTML = `<p> Đã đổi là: ${viTriPhu}</p>`
 }
+
+
 
 // CÂU 7 Hàm săp xếp
 function arrange() {
@@ -223,6 +238,8 @@ function finInteger() {
     resultIntegers.innerHTML = `<p> Số nguyên tố là: ${resultInter}</p>`;
 
 }
+
+
 
 
 
