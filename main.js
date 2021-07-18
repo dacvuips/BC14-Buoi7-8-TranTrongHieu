@@ -187,19 +187,9 @@ function exchange() {
             return va = getArrayTotal[viTri2]
         }
         if (ind == viTri2) {
-            console.log(ind)
-
-            console.log(va)
-
-
             return va = getArrayTotal[viTri1]
-
         }
-        console.log(va)
         return va
-
-
-
     })
 
     var resultExchange = document.getElementById('resultExchange');
