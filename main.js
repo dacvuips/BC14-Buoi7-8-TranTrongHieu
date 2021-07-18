@@ -24,6 +24,7 @@ function pushArray() {
     var pNumber = document.createElement('p')
     pNumber.innerHTML = `${number}`;
     resultArray.appendChild(pNumber);
+    document.getElementById('number').value = ""
 }
 
 
@@ -48,6 +49,8 @@ function addNumber() {
     var pAddNumber = document.createElement('p')
     pAddNumber.innerHTML = `${addNumbers}`;
     resultaddNumber.appendChild(pAddNumber);
+
+    document.getElementById('valueNumber').value = ""
 }
 
 // Lấy các nodeElement dã thêm
@@ -270,22 +273,24 @@ function finInteger() {
 
 }
 
-
+// // Cách 2
 // function finInteger2() {
 //     var getArrayTotal = getNodeEle();
 
-//     var resultInter = -1;
-//     resultInter = getArrayTotal.find(function(vale) {
+
+//     var SNTArray = [];
+
+
+//     var resultInter = getArrayTotal.map(function(vale) {
 
 //         // tập hợp các số nguyên tố của giá trị vào 1 Array
-
 //         for (var i = 2; i <= vale; i += 1) {
 //             var snt = true;
-//             var SNTArray = [];
+
 
 //             for (var j = 2; j < i; j += 1) {
 
-//                 if (i % j === 0) {
+//                 if (i % j === 0 && i !== 2) {
 //                     snt = false;
 //                     break;
 //                 }
@@ -293,20 +298,29 @@ function finInteger() {
 //             if (snt) {
 //                 // Push số nguyên tố vào Array
 //                 SNTArray.push(i);
-
+//                 console.log(i)
 //             }
-//         }
 
+//         }
+//         console.log(SNTArray)
 
 //         // Nếu giá trị cuối cùng trong tập hợp các số nguyên mà
 //         // bằng bới giá trị của số nguyên đang xét đó thì số đó là số nguyên tố
 //         if (SNTArray[SNTArray.length - 1] == vale) {
-
-//             // Lưu số nguyên đó vào 1 mảng và thoát lệnh ngay;
+//             console.log(vale)
+//                 // Lưu số nguyên đó vào 1 mảng và thoát lệnh ngay;
 //             return vale;
 //         }
-
 //     })
+
+//     console.log(resultInter)
+
+//     if (resultInter.length <= 0 && resultInter[0] == undefined) {
+
+//         resultInter = -1;
+//     } else {
+//         resultInter = resultInter[0]
+//     }
 
 
 //     var resultIntegers = document.getElementById('resultIntegers');
