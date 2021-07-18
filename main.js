@@ -151,29 +151,60 @@ function lastEven() {
 }
 
 //CÂU 6 Hàm đổi vị trí mảng
+// Cách thứ 1
+// function exchange() {
+//     var getArrayTotal = getNodeEle();
 
+//     var viTri1 = +document.getElementById('viTri1').value - 1;
+//     var viTri2 = +document.getElementById('viTri2').value - 1;
+//     var viTriPhu = [];
+
+//     for (var x = 0; x < getArrayTotal.length; x += 1) {
+
+//         if (x == viTri1) {
+//             viTriPhu.push(getArrayTotal[viTri2])
+//         } else if (x == viTri2) {
+//             viTriPhu.push(getArrayTotal[viTri1])
+//         } else {
+//             viTriPhu.push(getArrayTotal[x])
+//         }
+//     }
+
+//     var resultExchange = document.getElementById('resultExchange');
+//     resultExchange.innerHTML = `<p> Đã đổi là: ${viTriPhu}</p>`
+// }
+
+
+// Cách thứ 2
 function exchange() {
     var getArrayTotal = getNodeEle();
 
-    var viTri1 = document.getElementById('viTri1').value;
-    var viTri2 = document.getElementById('viTri2').value;
-    var viTriPhu = [];
+    var viTri1 = +document.getElementById('viTri1').value - 1;
+    var viTri2 = +document.getElementById('viTri2').value - 1;
+    var viTriPhu = getArrayTotal.map(function(va, ind) {
 
-    for (var x = 0; x < getArrayTotal.length; x += 1) {
-
-        if (x == viTri1) {
-            viTriPhu.push(getArrayTotal[viTri2])
-        } else if (x == viTri2) {
-            viTriPhu.push(getArrayTotal[viTri1])
-        } else {
-            viTriPhu.push(getArrayTotal[x])
+        if (ind == viTri1) {
+            return va = getArrayTotal[viTri2]
         }
-    }
+        if (ind == viTri2) {
+            console.log(ind)
+
+            console.log(va)
+
+
+            return va = getArrayTotal[viTri1]
+
+        }
+        console.log(va)
+        return va
+
+
+
+    })
 
     var resultExchange = document.getElementById('resultExchange');
     resultExchange.innerHTML = `<p> Đã đổi là: ${viTriPhu}</p>`
 }
-
 
 
 // CÂU 7 Hàm săp xếp
