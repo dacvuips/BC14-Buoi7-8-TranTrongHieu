@@ -1,384 +1,163 @@
-document.getElementById('pushArray').addEventListener('click', pushArray);
-document.getElementById('total').addEventListener('click', toTal);
-document.getElementById('addNumber').addEventListener('click', addNumber);
-document.getElementById('count').addEventListener('click', count);
-document.getElementById('minNumber').addEventListener('click', numberMin);
-document.getElementById('minPositive').addEventListener('click', minPositives);
-document.getElementById('btnEven').addEventListener('click', lastEven);
-document.getElementById('btnExchange').addEventListener('click', exchange);
-document.getElementById('btnArrange').addEventListener('click', arrange);
-document.getElementById('btnIntegers').addEventListener('click', finInteger);
-document.getElementById('btnHowNumber').addEventListener('click', howNumber);
-document.getElementById('btnMost').addEventListener('click', most);
-
-
-
-
-//Hàm tạo thêm số
-function pushArray() {
-
-    var number = document.getElementById('number').value;
-
-
-    var resultArray = document.getElementById('resultArray');
-    var pNumber = document.createElement('p')
-    pNumber.innerHTML = `${number}`;
-    resultArray.appendChild(pNumber);
-    document.getElementById('number').value = ""
-}
-
-
-// Lấy các nodeElement
-function getNodeEle() {
-    var resultArraySelec = document.querySelectorAll('#resultArray p')
-    var getArray = []
-    resultArraySelec.forEach(function(value) {
-        getArray.push(value.innerHTML);
-    });
-    return getArray;
-}
-
-
-//Hàm tạo thêm mảng thứ 2:
-function addNumber() {
-
-    var addNumbers = document.getElementById('valueNumber').value;
-
-
-    var resultaddNumber = document.getElementById('resultaddNumber');
-    var pAddNumber = document.createElement('p')
-    pAddNumber.innerHTML = `${addNumbers}`;
-    resultaddNumber.appendChild(pAddNumber);
-
-    document.getElementById('valueNumber').value = ""
-}
-
-// Lấy các nodeElement dã thêm
-function getAddNumber() {
-    var resultAddnumbers = document.querySelectorAll('#resultaddNumber p')
-    var getAddNumbers = []
-    resultAddnumbers.forEach(function(value) {
-        getAddNumbers.push(value.innerHTML);
-    });
-    return getAddNumbers;
-}
-
-
-
-// Hàm lọc số dương đưa vào mảng
-function positive() {
-
-    var getArrayTotal = getNodeEle();
-
-    var totalArray = getArrayTotal.filter(function(totalValue) {
-
-        if (totalValue > 0) {
-            return true;
-        }
-    })
-
-    return totalArray;
-}
-
-// Hàm tìm số chẵn trong mảng
-
-function finEven() {
-
-    var getArrayTotal = getNodeEle();
-    var getEven = getArrayTotal.filter(function(value) {
-
-        return value % 2 == 0;
-
-    })
-    console.log(getEven)
-    return getEven;
-}
-
-
-// CÂU 1 Hàm tính Tổng só dương trong mảng
-function toTal() {
-    var positives = positive();
-    // Tính tổng
-    var total = 0;
-    for (var i = 0; i < positives.length; i += 1) {
-        total += +positives[i];
-    }
-
-    var resultTotal = document.getElementById('resultTotal');
-    resultTotal.innerHTML = `<p> Tổng là:  ${total}</p>`
-
-}
-// CÂU 2 Hàm đếm số dương trong mảng
-function count() {
-    var positives = positive();
-
-    var resultCount = document.getElementById('resultCount');
-    resultCount.innerHTML = `<p> Hiên số dương là:  ${positives.length}</p>`
-}
-
-//CÂU 3 Hàm tìm số nhỏ nhất trong mảng
-function numberMin() {
-    var getArrayTotal = getNodeEle();
-
-    var minNum = Math.min.apply(null, getArrayTotal);
-
-
-    var resultMin = document.getElementById('resultMin');
-    resultMin.innerHTML = `<p> Nhỏ nhất là:  ${minNum}</p>`
-}
-
-// CÂU 4 Hàm tìm số dương nhỏ nhất trong mảng
-function minPositives() {
-    var positives = positive();
-
-    var MinPositive = Math.min.apply(null, positives);
-
-
-    var resultMinPositive = document.getElementById('resultMinPositive');
-    resultMinPositive.innerHTML = `<p> Nhỏ dương nhất là: ${MinPositive}</p>`
-}
-
-// CÂU 5 Hàm tìm sô chẵn cuối cùng trong mảng
-function lastEven() {
-    var even = finEven();
-    var resultEvent = 0;
-    if (even.length == 0) {
-        resultEvent = (-1);
-    } else {
-        resultEvent = even[even.length - 1]
-    }
-
-    var resultEven = document.getElementById('resultEven');
-    resultEven.innerHTML = `<p> Số chẵn cuối là: ${resultEvent}</p>`
-
-}
-
-//CÂU 6 Hàm đổi vị trí mảng
-// Cách thứ 1
-// function exchange() {
-//     var getArrayTotal = getNodeEle();
-
-//     var viTri1 = +document.getElementById('viTri1').value - 1;
-//     var viTri2 = +document.getElementById('viTri2').value - 1;
-//     var viTriPhu = [];
-
-//     for (var x = 0; x < getArrayTotal.length; x += 1) {
-
-//         if (x == viTri1) {
-//             viTriPhu.push(getArrayTotal[viTri2])
-//         } else if (x == viTri2) {
-//             viTriPhu.push(getArrayTotal[viTri1])
-//         } else {
-//             viTriPhu.push(getArrayTotal[x])
-//         }
-//     }
-
-//     var resultExchange = document.getElementById('resultExchange');
-//     resultExchange.innerHTML = `<p> Đã đổi là: ${viTriPhu}</p>`
-// }
-
-
-// Cách thứ 2
-function exchange() {
-    var getArrayTotal = getNodeEle();
-
-    var viTri1 = +document.getElementById('viTri1').value - 1;
-    var viTri2 = +document.getElementById('viTri2').value - 1;
-    var viTriPhu = getArrayTotal.map(function(va, ind) {
-
-        if (ind == viTri1) {
-            return va = getArrayTotal[viTri2]
-        }
-        if (ind == viTri2) {
-            console.log(ind)
-
-            console.log(va)
-
-
-            return va = getArrayTotal[viTri1]
-
-        }
-        console.log(va)
-        return va
-
-
-
-    })
-
-    var resultExchange = document.getElementById('resultExchange');
-    resultExchange.innerHTML = `<p> Đã đổi là: ${viTriPhu}</p>`
-}
-
-
-// CÂU 7 Hàm săp xếp
-function arrange() {
-
-    var getArrayTotal = getNodeEle();
-
-    var arrange = getArrayTotal.sort(function(a, b) {
-        return a - b
-    })
-
-    var resultArrange = document.getElementById('resultArrange');
-    resultArrange.innerHTML = `<p> Đã đổi là: ${arrange.join(' > ')}</p>`
-}
-
-// CÂU 8 Hàm tìm số nguyên tố đầu tiên
-
-function finInteger() {
-    var getArrayTotal = getNodeEle();
-    var resultInter = -1;
-
-    for (var k = 0; k < getArrayTotal.length; k += 1) {
-
-
-        if (getArrayTotal[k] < 2) {
-            continue;
-        }
-
-        // tập hợp các số nguyên tố của giá trị vào 1 Array
-
-        for (var i = 2; i <= getArrayTotal[k]; i += 1) {
-            var snt = true;
-            var SNTArray = [];
-
-            for (var j = 2; j < i; j += 1) {
-
-                if (i % j === 0 && i !== 2) {
-                    snt = false;
-                    break;
-                }
-            }
-            if (snt) {
-                // Push số nguyên tố vào Array
-                SNTArray.push(i);
-
-            }
-        }
-
-
-        // Nếu giá trị cuối cùng trong tập hợp các số nguyên mà
-        // bằng bới giá trị của số nguyên đang xét đó thì số đó là số nguyên tố
-        if (SNTArray[SNTArray.length - 1] == getArrayTotal[k]) {
-
-            // Lưu số nguyên đó vào 1 mảng và thoát lệnh ngay;
-            resultInter = getArrayTotal[k];
-            break
-
-        }
-    }
-
-    var resultIntegers = document.getElementById('resultIntegers');
-    resultIntegers.innerHTML = `<p> Số nguyên tố là: ${resultInter}</p>`;
-
-}
-
-// // Cách 2
-// function finInteger2() {
-//     var getArrayTotal = getNodeEle();
-
-
-//     var SNTArray = [];
-
-
-//     var resultInter = getArrayTotal.map(function(vale) {
-
-//         // tập hợp các số nguyên tố của giá trị vào 1 Array
-//         for (var i = 2; i <= vale; i += 1) {
-//             var snt = true;
-
-
-//             for (var j = 2; j < i; j += 1) {
-
-//                 if (i % j === 0 && i !== 2) {
-//                     snt = false;
-//                     break;
-//                 }
-//             }
-//             if (snt) {
-//                 // Push số nguyên tố vào Array
-//                 SNTArray.push(i);
-//                 console.log(i)
-//             }
-
-//         }
-//         console.log(SNTArray)
-
-//         // Nếu giá trị cuối cùng trong tập hợp các số nguyên mà
-//         // bằng bới giá trị của số nguyên đang xét đó thì số đó là số nguyên tố
-//         if (SNTArray[SNTArray.length - 1] == vale) {
-//             console.log(vale)
-//                 // Lưu số nguyên đó vào 1 mảng và thoát lệnh ngay;
-//             return vale;
-//         }
-//     })
-
-//     console.log(resultInter)
-
-//     if (resultInter.length <= 0 && resultInter[0] == undefined) {
-
-//         resultInter = -1;
-//     } else {
-//         resultInter = resultInter[0]
-//     }
-
-
-//     var resultIntegers = document.getElementById('resultIntegers');
-//     resultIntegers.innerHTML = `<p> Số nguyên tố là: ${resultInter}</p>`;
-
-// }
-
-
-
-
-//CÂU 9 Bao nhiu số nguyên:
-
-function howNumber() {
-    var getNum = getAddNumber();
-
-    var getArrayTotal = getNodeEle();
-    var totalNewNum = getArrayTotal.concat(getNum);
-    console.log(getNum);
-    console.log(getArrayTotal);
-    console.log(totalNewNum);
-    var hownumbers = totalNewNum.filter(function(value) {
-
-        if (Number.isInteger(+value) == true) {
-            return +value
-        }
-    })
-
-    var resultHowNumber = document.getElementById('resultHowNumber');
-    resultHowNumber.innerHTML = `<p> Số nguyên có: ${hownumbers.length} số</p>`;
-
-
-}
-
-
-// CÂU 10 Kiểm tra số dương hay âm nhiều hơn
-function most() {
-    var getArrayTotal = getNodeEle();
-    var resultEvenOrOdd = "Không xác định"
-
-    var yang = positive()
-
-    var minus = getArrayTotal.filter(function(val) {
-            return val < 0;
-        })
-        // Kiểm tra số nhiều hơn
-    if (yang.length > minus.length) {
-
-        resultEvenOrOdd = "Số dương nhiều hơn"
-
-    } else if (yang.length == minus.length) {
-
-        resultEvenOrOdd = "2 sô bằng nhau"
-    } else {
-
-        resultEvenOrOdd = "Sô âm nhiều hơn"
-    }
-
-    var resultMost = document.getElementById('resultMost');
-    resultMost.innerHTML = `<p> ${resultEvenOrOdd}</p>`;
-
-}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BC14 - Trần Trọng Hiếu</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+
+
+            <!-- Lấy sô-->
+            <div class="col my-5">
+                <div class="card w-100 mx-auto p-3">
+                    <h5 class="card-header bg-primary text-center text-white">
+                        BÀI TẬP ARRAY - TRẦN TRỌNG HIẾU
+                    </h5>
+                    <div class="card-body"></div>
+
+                    <div class="form-group">
+                        <label for="number">Nhập số:</label>
+                        <input type="number" class="form-control" id="number" placeholder="Nhập từng số" />
+                    </div>
+                    <P>Danh sách các số:</P>
+                    <div id="resultArray" class="text-break alert alert-primary my-2 p-1 d-flex">
+
+                    </div>
+
+                    <button type="button" id="pushArray" class="btn btn-success">
+              Thêm số
+            </button>
+
+
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <div class="nav flex-column nav-pills alert alert-warning " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Tổng số dương</a>
+                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Đếm số dương</a>
+                                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Số nhỏ nhất</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Số dương nhỏ nhất</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-settings" aria-selected="false">Số chẵn cuối cùng</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-settings" aria-selected="false">Đổi vị trí 2 số</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-7" role="tab" aria-controls="v-pills-settings" aria-selected="false">Sắp xếp mảng theo tăng dần</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-8" role="tab" aria-controls="v-pills-settings" aria-selected="false">Số nguyên tố đầu tiên</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-9" role="tab" aria-controls="v-pills-settings" aria-selected="false">Bao nhiêu số nguyên</a>
+                                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-10" role="tab" aria-controls="v-pills-settings" aria-selected="false">So sánh dương và âm</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><button type="button" id="total" class="btn btn-success">
+                                    Thực hiện
+                                  </button>
+                                    <div id="resultTotal" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><button type="button" id="count" class="btn btn-success">
+                                    Thực hiện
+                                  </button>
+                                    <div id="resultCount" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><button type="button" id="minNumber" class="btn btn-success">
+                                    Thực hiện
+                                  </button>
+                                    <div id="resultMin" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"><button type="button" id="minPositive" class="btn btn-success">
+                                    Thực hiện
+                                  </button>
+                                    <div id="resultMinPositive" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-settings-tab"><button type="button" id="btnEven" class="btn btn-success">
+                                            Thực hiện
+                                          </button>
+                                    <div id="resultEven" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="viTri1">Vị trí 1:</label>
+                                            <input type="number" class="form-control" id="viTri1" placeholder="Nhập vị trí muốn đổi" />
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="viTri2">Vị trí 2:</label>
+                                            <input type="number" class="form-control" id="viTri2" placeholder="Nhập vị trí muốn đổi" />
+                                        </div>
+                                    </div>
+
+                                    <button type="button" id="btnExchange" class="btn btn-success">
+                                            Thực hiện
+                                          </button>
+                                    <div id="resultExchange" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-7" role="tabpanel" aria-labelledby="v-pills-settings-tab"><button type="button" id="btnArrange" class="btn btn-success">
+                                            Thực hiện
+                                          </button>
+                                    <div id="resultArrange" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-8" role="tabpanel" aria-labelledby="v-pills-settings-tab"><button type="button" id="btnIntegers" class="btn btn-success">
+                                            Thực hiện
+                                          </button>
+                                    <div id="resultIntegers" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-9" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+                                    <div class="form-group">
+                                        <label for="valueNumber">Nhập từng số muốn thêm:</label>
+                                        <input type="number" class="form-control" id="valueNumber" placeholder="Nhập số" />
+                                    </div>
+
+
+                                    <button type="button" id="addNumber" class="btn btn-success">
+                              Thêm số
+                            </button>
+                                    <P>Danh sách các số đã thêm:(danh sách sẻ được cộng với danh sách ở trên, nếu không muốn cộng phải xóa danh sách phía trên)</P>
+                                    <div id="resultaddNumber" class="text-break alert alert-primary my-2 p-3 d-flex">
+
+                                    </div>
+
+
+                                    <button type="button" id="btnHowNumber" class="btn btn-success">
+                                        Thực hiện
+                                          </button>
+                                    <div id="resultHowNumber" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-10" role="tabpanel" aria-labelledby="v-pills-settings-tab"> <button type="button" id="btnMost" class="btn btn-success">
+                                    Thực hiện
+                                  </button>
+                                    <div id="resultMost" class="text-center alert alert-success mt-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./main.js "></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js " integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns " crossorigin="anonymous "></script>
+</body>
+
+</html>
